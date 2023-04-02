@@ -1,7 +1,7 @@
 import Search from "./Search";
 import FilteredPokemons from "./FilteredPokemons";
 import { useEffect, useState } from "react";
-import Page from './Page';
+//import Page from './Page';
 import Pagination from './Pagination';
 import axios from 'axios';
 
@@ -12,6 +12,7 @@ function App() {
   const [pageNumber, setPageNumber] = useState(1);
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [typeSelectedArray, setTypeSelectedArray] = useState([]);
+  const [searchName, setSearchName] = useState('');
 
   useEffect(() => {
     async function getPokemons() {
@@ -30,6 +31,8 @@ function App() {
         setTypeSelectedArray={setTypeSelectedArray}
         typeSelectedArray={typeSelectedArray}
         setPageNumber={setPageNumber}
+        searchName={searchName}
+        setSearchName={setSearchName}
       />
       <FilteredPokemons
         pokemons={pokemons} 
@@ -38,6 +41,7 @@ function App() {
         setFilteredPokemons={setFilteredPokemons}
         pageNumber={pageNumber}
         typeSelectedArray={typeSelectedArray}
+        searchName={searchName}
       />
       {/* <Page
         pokemons={pokemons}

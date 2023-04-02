@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-function FilteredPokemons({ pokemons, filteredPokemons, setFilteredPokemons, pageNumber, typeSelectedArray }) {
+function FilteredPokemons({ searchName, pokemons, filteredPokemons, setFilteredPokemons, pageNumber, typeSelectedArray }) {
 
     //const [pokemons, setPokemons] = useState([]);
     // const [filteredPokemons, setFilteredPokemons] = useState([])
@@ -12,8 +12,9 @@ function FilteredPokemons({ pokemons, filteredPokemons, setFilteredPokemons, pag
             pokemons.filter((pokemon) =>
                 typeSelectedArray.every((type) => pokemon.type.includes(type))
             )
+            .filter((pokemon) => pokemon.name.english.toLowerCase().includes(searchName.toLowerCase()))
         );
-    }, [pokemons, typeSelectedArray, setFilteredPokemons]);
+    }, [pokemons, typeSelectedArray, setFilteredPokemons, searchName]);
 
     const pokemonPerPage = 10;
     const start = (pageNumber - 1) * pokemonPerPage;
@@ -47,6 +48,8 @@ function FilteredPokemons({ pokemons, filteredPokemons, setFilteredPokemons, pag
                                 </ul>
                             </div>
                         )
+                    } else {
+                        return null;
                     }
                 })
             }
