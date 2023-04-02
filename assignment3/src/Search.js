@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 
-function Search({ setTypeSelectedArray, typeSelectedArray}) {
+function Search({ setTypeSelectedArray, typeSelectedArray, setPageNumber}) {
   const [types, setTypes] = useState([])
 
 
@@ -21,23 +21,28 @@ function Search({ setTypeSelectedArray, typeSelectedArray}) {
     
     if (checked) {
       setTypeSelectedArray(typeSelectedArray => [...typeSelectedArray, value])
+      setPageNumber(1);
     } else {
       setTypeSelectedArray(typeSelectedArray => typeSelectedArray.filter(type => type !== value))
+      setPageNumber(1);
     }
   }
-
+//   const handleSearch = (e) => {
+//     setSearchTerm(e.target.value);
+//     setCurrentPage(1); // reset current page to 1
+//   };
 
   return (
-    <div>
+    <div className='searchbox'> 
       {
-        types.map(type => <div key={type}>
+        types.map(type => <div key={type} className='checkbox'>
           <input
             type="checkbox"
             value={type}
             id={type}
-            onChange={handleClickF}
+            onChange={handleClickF}           
           />
-          <label htmlFor={type}>{type}</label>
+          <label htmlFor={type} className='label'>{type}</label>
 
 
         </div>)

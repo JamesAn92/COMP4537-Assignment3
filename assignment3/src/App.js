@@ -8,29 +8,34 @@ import axios from 'axios';
 
 function App() {
 
-  //const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [typeSelectedArray, setTypeSelectedArray] = useState([]);
 
-  // useEffect(() => {
-  //   async function getPokemons() {
-  //     const res = await axios.get('https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json')
-  //     setPokemons(res.data);
+  useEffect(() => {
+    async function getPokemons() {
+      const res = await axios.get('https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json')
+      setPokemons(res.data);
 
-  //   }
-  //   getPokemons();
-  // }, [])
+    }
+    getPokemons();
+  }, [])
+
+  
 
   return (
     <>
       <Search
         setTypeSelectedArray={setTypeSelectedArray}
         typeSelectedArray={typeSelectedArray}
+        setPageNumber={setPageNumber}
       />
       <FilteredPokemons
-        setFilteredPokemons={setFilteredPokemons}
+        pokemons={pokemons} 
+        setPokemons={setPokemons}
         filteredPokemons={filteredPokemons}
+        setFilteredPokemons={setFilteredPokemons}
         pageNumber={pageNumber}
         typeSelectedArray={typeSelectedArray}
       />
@@ -38,7 +43,7 @@ function App() {
         pokemons={pokemons}
         pageNumber={pageNumber} /> */}
       <Pagination
-        pokemons={filteredPokemons}
+        filteredPokemons={filteredPokemons}
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
       />

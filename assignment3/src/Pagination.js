@@ -1,7 +1,6 @@
 function Pagination({ filteredPokemons, pageNumber ,setPageNumber }) {
     const pageSize = 10;
-    const pageCount = 20;
-    //= Math.ceil(filteredPokemons.length / pageSize);
+    const pageCount = Math.ceil(filteredPokemons.length / pageSize);
    
     return (
         <div className="page-numbers">
