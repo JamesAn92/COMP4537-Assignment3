@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
+
 
 function FilteredPokemons({ searchName, pokemons, filteredPokemons, setFilteredPokemons, pageNumber, typeSelectedArray }) {
-
-    //const [pokemons, setPokemons] = useState([]);
-    // const [filteredPokemons, setFilteredPokemons] = useState([])
-
-
 
     useEffect(() => {
         setFilteredPokemons(
@@ -31,7 +28,6 @@ function FilteredPokemons({ searchName, pokemons, filteredPokemons, setFilteredP
         }
     }
 
-
     return (
         <div>
             <h1>Page number {pageNumber}</h1>
@@ -41,11 +37,13 @@ function FilteredPokemons({ searchName, pokemons, filteredPokemons, setFilteredP
                     if (typeSelectedArray.every(type => pokemon.type.includes(type))) {
                         return (
                             <div key={index} className='pokemon-img'>
-                                <p>{pokemon.name.english}</p>
-                                <img src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${callf(pokemon.id)}${pokemon.id}.png`} alt={pokemon.name.english} />
-                                <ul className='types'>
-                                    {pokemon.type.map(type => <li key={type}>{type}</li>)}
-                                </ul>
+                                <Link to = {`/pokemon/${pokemon.id}`}>
+                                    <p>{pokemon.name.english}</p>
+                                    <img src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${callf(pokemon.id)}${pokemon.id}.png`} alt={pokemon.name.english} />
+                                    <ul className='types'>
+                                        {pokemon.type.map(type => <li key={type}>{type}</li>)}
+                                    </ul>
+                                </Link>
                             </div>
                         )
                     } else {
