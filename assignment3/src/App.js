@@ -21,8 +21,9 @@ function App() {
   const [accessToken, setAccessToken] = useState('');
   const [refreshToken, setRefreshToken] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  
+
   useEffect(() => {
     async function getPokemons() {
       const res = await axios.get('http://localhost:6001/api/v1/pokemons/', {
@@ -43,8 +44,24 @@ function App() {
   return (
     <>
       <Router>
-        {accessToken ? (
-          <>
+        {loggedIn ? (
+          <>      
+              <Login
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              user={user}
+              setUser={setUser}
+              accessToken={accessToken}
+              setAccessToken={setAccessToken}
+              refreshToken={refreshToken}
+              setRefreshToken={setRefreshToken}
+              isRegistering={isRegistering}
+              setIsRegistering={setIsRegistering}
+              loggedIn={loggedIn}
+              setLoggedIn={setLoggedIn}
+            />
             <Search
               setTypeSelectedArray={setTypeSelectedArray}
               typeSelectedArray={typeSelectedArray}
@@ -66,6 +83,14 @@ function App() {
               pageNumber={pageNumber}
               setPageNumber={setPageNumber}
             />
+                 <Routes>
+              {/* <Route path="/" element={< />} /> */}
+              <Route
+                path="/pokemon/:id"
+                element={<PokemonDetails accessToken={accessToken} refreshToken={refreshToken} setAccessToken={setAccessToken} />}
+              />
+            </Routes>
+ 
           </>
         ) : (
           <Login
@@ -81,6 +106,8 @@ function App() {
             setRefreshToken={setRefreshToken}
             isRegistering={isRegistering}
             setIsRegistering={setIsRegistering}
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
           />
         )}
       </Router>

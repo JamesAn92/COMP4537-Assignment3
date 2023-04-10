@@ -8,7 +8,7 @@ import Registration from './Registration';
 // const [accessToken, setAccessToken] = useState('');
 // const [refreshToken, setRefreshToken] = useState('');
 // const [isRegistering, setIsRegistering] = useState(false);
-function Login( { username, setUsername, password, setPassword, user, setUser, accessToken, setAccessToken, refreshToken, setRefreshToken, isRegistering, setIsRegistering }) {
+function Login( { loggedIn, setLoggedIn, username, setUsername, password, setPassword, user, setUser, accessToken, setAccessToken, refreshToken, setRefreshToken, isRegistering, setIsRegistering }) {
 
 
   const handleLogin = async (e) => {
@@ -18,6 +18,7 @@ function Login( { username, setUsername, password, setPassword, user, setUser, a
       setUser(res.data);
       setAccessToken(res.headers['auth-token-access']);
       setRefreshToken(res.headers['auth-token-refresh']);
+      setLoggedIn(true);  
       console.log(res.headers['auth-token-access']);
     } catch (err) {
       console.log(err);
@@ -28,6 +29,7 @@ function Login( { username, setUsername, password, setPassword, user, setUser, a
     setUser({});
     setAccessToken('');
     setRefreshToken('');
+    setLoggedIn(false);
   }
 
   if (user?.role === 'admin') {
