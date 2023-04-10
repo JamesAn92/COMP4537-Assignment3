@@ -2,24 +2,21 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import Dashboard from './Dashboard';
 import Registration from './Registration';
-// const [username, setUsername] = useState('');
-// const [password, setPassword] = useState('');
-// const [user, setUser] = useState({});
-// const [accessToken, setAccessToken] = useState('');
-// const [refreshToken, setRefreshToken] = useState('');
-// const [isRegistering, setIsRegistering] = useState(false);
+import './Login.css'
+import { Link } from 'react-router-dom';
+
+
 function Login( { loggedIn, setLoggedIn, username, setUsername, password, setPassword, user, setUser, accessToken, setAccessToken, refreshToken, setRefreshToken, isRegistering, setIsRegistering }) {
 
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/login", { username, password });
+      const res = await axios.post("http://localhost:5000/login", { username, password });      
       setUser(res.data);
       setAccessToken(res.headers['auth-token-access']);
       setRefreshToken(res.headers['auth-token-refresh']);
       setLoggedIn(true);  
-      console.log(res.headers['auth-token-access']);
     } catch (err) {
       console.log(err);
     }
@@ -29,7 +26,7 @@ function Login( { loggedIn, setLoggedIn, username, setUsername, password, setPas
     setUser({});
     setAccessToken('');
     setRefreshToken('');
-    setLoggedIn(false);
+    setLoggedIn(false);   
   }
 
   if (user?.role === 'admin') {
@@ -37,14 +34,18 @@ function Login( { loggedIn, setLoggedIn, username, setUsername, password, setPas
       <div>
         <h1>Welcome {user.username}</h1>
         <Dashboard accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} />
-        <button onClick={handleLogout}>Logout</button>
+        <Link to = {`/`}>
+        <button className='logout-button' onClick={handleLogout}>Logout</button>
+        </Link>
       </div>
     );
   } else if (user?.username) {
     return (
       <div>
         <h1>Welcome {user.username}</h1>
-        <button onClick={handleLogout}>Logout</button>
+        <Link to = {`/`}>
+        <button className='logout-button' onClick={handleLogout}>Logout</button>
+        </Link>
       </div>
     );
   } else if (isRegistering) {

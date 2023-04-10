@@ -2,6 +2,19 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import faker from 'faker';
+
+
 
 
 function Report({ id, accessToken, setAccessToken, refreshToken }) {
@@ -56,6 +69,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken }) {
 
   return (
     <>
+      <h1> ewtdsa</h1>
       <div>Report {id && id}</div>
       <div> {reportTable && reportTable}</div>
     </>

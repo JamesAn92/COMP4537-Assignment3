@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+import './Search.css'
 
 function Search({ searchName, setSearchName, setTypeSelectedArray, typeSelectedArray, setPageNumber }) {
     const [types, setTypes] = useState([])

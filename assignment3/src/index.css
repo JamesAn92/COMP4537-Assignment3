@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
 }
 
 code {
@@ -12,62 +13,3 @@ code {
     monospace;
 }
 
-button {
-  display: inline-block;
-}
-
-button.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.pokemons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.pokemon-img {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 30px;
-}
-.pokemon-img img {
-  width: 100px;
-  height: 100px;
-}
-
-.pokemon-img p {
-  width: 100px;
-  height: 10px;
-  text-align: center;
-}
-
-.page-numbers {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-}
-
-.page-numbers button {
-  width: 50px;
-  height: 20px;
-}
-
-.searchbox {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.checkbox {
-  display: flex;
-  margin: 10px ;
-}
-
-.label {
-  margin-left: 20px;
-}
