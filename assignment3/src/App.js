@@ -7,6 +7,7 @@ import Login from "./Login";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Route as ReactDOMRoute } from 'react-router';
 import PokemonDetails from './PokemonDetails';
+
 function App() {
 
   const [pokemons, setPokemons] = useState([]);
